@@ -1,0 +1,11 @@
+    MOVE(FMODE,   0), // set fetch mode = 0 (slow fetch mode for AGA compatibility)
+
+spritepointers:
+    MOVE(SPR0PTH, 0), MOVE(SPR0PTL, 0),     // Sprites
+    MOVE(SPR1PTH, 0), MOVE(SPR1PTL, 0),
+    MOVE(SPR2PTH, 0), MOVE(SPR2PTL, 0),
+    MOVE(SPR3PTH, 0), MOVE(SPR3PTL, 0),
+    MOVE(SPR4PTH, 0), MOVE(SPR4PTL, 0),
+    MOVE(SPR5PTH, 0), MOVE(SPR5PTL, 0),
+    MOVE(SPR6PTH, 0), MOVE(SPR6PTL, 0),
+    MOVE(SPR7PTH, 0), MOVE(SPR7PTL, 0),
