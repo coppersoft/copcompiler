@@ -12,3 +12,5 @@ void freeCopperlist(UWORD* copList);
 UWORD* compileCopperlist(char* copFileName);
 
 UWORD hex2word(char* hex);
+
+void parseLine(char* line);

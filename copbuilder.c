@@ -1,6 +1,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "copbuilder.h"
 
 
@@ -49,9 +50,19 @@ UWORD* compileCopperlist(char* copFileName) {
 
     while (fgets(copLine, COP_MAX_LINE_SIZE, copFile))
     {  
-        printf("%s",copLine);
+        //printf("%s",copLine);
+        parseLine(copLine);
     }
 
 
     fclose(copFile);
+}
+
+void parseLine(char* line) {
+    char * token = strtok(line, ",");
+    // loop through the string to extract all other tokens
+    while( token != NULL ) {
+        printf( "'%s'\n", token ); //printing each token
+        token = strtok(NULL, ",");
+    }
 }

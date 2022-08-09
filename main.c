@@ -27,25 +27,14 @@ void printCopperlist(UWORD* copperlist) {
 }
 
 int main () {
-    //allocCopperlist();
-
-    /* UWORD value;
-
-    value = hex2word("0010");
-
-    printf("Ciao %d\n",value); */
-
-    UWORD* cop = copperlist;
-
-
-    printCopperlist(&copperlist[0]);
+    
 
     compileCopperlist("copperlist.pcl");
 
     
 
-    UWORD wReg = resolveRegister("BLTCMOD");
-    printf("Restituito %#08x\n",wReg);
+    //UWORD wReg = resolveRegister("BLTCMOD");
+    //printf("Restituito %#08x\n",wReg);
 
 
 }
