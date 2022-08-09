@@ -8,6 +8,6 @@ typedef unsigned short  UWORD;
 
 void freeCopperlist(UWORD* copList);
 
-UWORD* compileCopperlist(char* copFile);
+UWORD* compileCopperlist(char* copFileName);
 
 UWORD hex2word(char* hex);

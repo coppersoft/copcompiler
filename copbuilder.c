@@ -30,6 +30,21 @@ UWORD hex2word(char* hex) {
 
 }
 
-UWORD* compileCopperlist(char* copFile) {
+UWORD* compileCopperlist(char* copFileName) {
+    char    copLine[100];
 
+    FILE* copFile = fopen(copFileName,"r");
+
+    if (!copFile) {
+        printf("Errore nella lettura del file\n");
+        exit(-1);
+    }
+
+    while (fgets(copLine, 100, copFile))
+    {  
+        printf("%s",copLine);
+    }
+
+
+    fclose(copFile);
 }

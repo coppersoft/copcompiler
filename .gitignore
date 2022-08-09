@@ -51,4 +51,8 @@ Thumbs.db
 # c related
 *.out
 *.o
+*.exe
 .vscode
+main.dSYM/Contents/Info.plist
+main.dSYM/Contents/Resources/DWARF/main
+main
