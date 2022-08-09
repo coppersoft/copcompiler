@@ -1,6 +1,8 @@
 CC=gcc
 
-all: copbuilder
-	$(CC) copbuilder.o main.c -o main.exe
+all: copbuilder registers
+	$(CC) copbuilder.o registers.o main.c
 copbuilder:
 	$(CC) -c copbuilder.c
+registers:
+	$(CC) -c registers.c

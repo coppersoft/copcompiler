@@ -3,6 +3,11 @@
 #include <stdlib.h>
 #include "copbuilder.h"
 
+
+
+
+
+
 static UWORD* allocCopperlist() {
     UWORD* copPtr = (UWORD*) malloc(sizeof(UWORD) * COP_BUFFER_SIZE);
 
@@ -30,8 +35,10 @@ UWORD hex2word(char* hex) {
 
 }
 
+
+
 UWORD* compileCopperlist(char* copFileName) {
-    char    copLine[100];
+    char    copLine[COP_MAX_LINE_SIZE];
 
     FILE* copFile = fopen(copFileName,"r");
 
@@ -40,7 +47,7 @@ UWORD* compileCopperlist(char* copFileName) {
         exit(-1);
     }
 
-    while (fgets(copLine, 100, copFile))
+    while (fgets(copLine, COP_MAX_LINE_SIZE, copFile))
     {  
         printf("%s",copLine);
     }

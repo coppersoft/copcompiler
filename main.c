@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "copbuilder.h"
+#include "registers.h"
 
 UWORD copperlist[] = {
 	1,2,
@@ -8,6 +9,9 @@ UWORD copperlist[] = {
 	5,6,
 	0xffff,0xfffe
 };
+
+
+
 
 void printCopperlist(UWORD* copperlist) {
 	int index = 0;
@@ -37,5 +41,9 @@ int main () {
     printCopperlist(&copperlist[0]);
 
     compileCopperlist("copperlist.pcl");
+
+    
+
+    resolveRegister("BLTCMOD");
 
 }
