@@ -271,6 +271,7 @@ UWORD resolveRegister(char* registerName) {
     for (int i = 0; i < TOTAL_REGISTERS ; i++) {
         if (!strcmp(registerName,registers[i].name)) {
             printf("Trovato! %s\n",registers[i].value);
+            return hex2word(registers[i].value);
         }
     }
     return 0;

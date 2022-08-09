@@ -44,6 +44,8 @@ int main () {
 
     
 
-    resolveRegister("BLTCMOD");
+    UWORD wReg = resolveRegister("BLTCMOD");
+    printf("Restituito %#08x\n",wReg);
+
 
 }
