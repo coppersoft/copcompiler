@@ -1,0 +1,1 @@
+    MOVE(FMODE=0)   // set fetch mode = 0 (slow fetch mode for AGA compatibility)

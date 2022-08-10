@@ -58,11 +58,64 @@ UWORD* compileCopperlist(char* copFileName) {
     fclose(copFile);
 }
 
+
+void parseMove(char* move) {
+    char regname[10] = {0};
+    char regvalue[10] = {0};
+    move+=5;
+    char* startRegValue = strchr(move,'=');
+
+    strncpy(regname,move,(startRegValue-move));
+    printf("Nome del registro: %s\n",regname);
+
+    startRegValue++;
+    char* endRegValue = strchr(startRegValue,')');
+    strncpy(regvalue,startRegValue,(endRegValue-startRegValue));
+
+    printf("Valore del registro: %s\n",regvalue);
+
+}
+
+void parseLabel(char* label) {
+    printf("E' una label: %s\n",label);
+}
+
+void parseSimpleValue(char* simpleValue) {
+    printf("E' un valore semplice %s\n",simpleValue);
+}
+
+
+void parseToken(char* token) {
+    printf("Parso il token '%s-\n",token);
+    char* validToken = NULL;
+
+    // Vedo se è una label
+    validToken = strchr(token,':');
+    if (validToken != NULL) {
+        parseLabel(token);
+        return;
+    }
+
+    // Vediamo se è un MOVE
+    validToken = strstr(token,"MOVE");
+    if (validToken != NULL) {
+        printf("Trovato MOVE '%s'\n",validToken);
+        parseMove(validToken);
+        return;
+    }
+
+    // Vediamo se è un valore secco
+    validToken = strstr(token,"0x");
+    if (validToken != NULL) {
+        parseSimpleValue(token);
+    }
+}
+
 void parseLine(char* line) {
     char * token = strtok(line, ",");
     // loop through the string to extract all other tokens
     while( token != NULL ) {
-        printf( "'%s'\n", token ); //printing each token
+        parseToken(token);
         token = strtok(NULL, ",");
     }
 }

@@ -1,8 +1,8 @@
 CC=gcc
 
 all: copbuilder registers
-	$(CC) copbuilder.o registers.o main.c
+	$(CC) -g copbuilder.o registers.o main.c -o main
 copbuilder:
-	$(CC) -c copbuilder.c
+	$(CC) -g -c copbuilder.c
 registers:
-	$(CC) -c registers.c
+	$(CC) -g -c registers.c
