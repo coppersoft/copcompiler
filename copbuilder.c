@@ -3,24 +3,36 @@
 #include <stdlib.h>
 #include <string.h>
 #include "copbuilder.h"
+#include "registers.h"
 
 
 
+UWORD* copperList;
+char*   labels;
+int     copIndex = 0;
+int     lblIndex = 0;
 
 
 
-static UWORD* allocCopperlist() {
-    UWORD* copPtr = (UWORD*) malloc(sizeof(UWORD) * COP_BUFFER_SIZE);
+static void allocCopperlist() {
+    copperList = (UWORD*) malloc(sizeof(UWORD) * COP_BUFFER_SIZE);
 
-    if (copPtr == NULL) {
+    if (copperList == NULL) {
         printf("Unable to alloc copperlist\n");
         exit(-1);
     }
-    return copPtr;
 }
 
-void freeCopperlist(UWORD* copperList) {
+static void allocLabels() {
+    labels = (char*) malloc(sizeof(char) * LABELS_BUFFER_SIZE);
+}
+
+void freeCopperlist() {
     free(copperList);
+}
+
+void freeLabels() {
+    free(labels);
 }
 
 /**
@@ -39,6 +51,10 @@ UWORD hex2word(char* hex) {
 
 
 UWORD* compileCopperlist(char* copFileName) {
+
+    allocCopperlist();
+    allocLabels();
+
     char    copLine[COP_MAX_LINE_SIZE];
 
     FILE* copFile = fopen(copFileName,"r");
@@ -56,6 +72,8 @@ UWORD* compileCopperlist(char* copFileName) {
 
 
     fclose(copFile);
+
+    return copperList;
 }
 
 
@@ -74,6 +92,19 @@ void parseMove(char* move) {
 
     printf("Valore del registro: %s\n",regvalue);
 
+    
+
+    UWORD hReg = resolveRegister(regname);
+    UWORD hVal = hex2word(regvalue);
+
+    
+
+    printf("Valori reg %d , val %d\n\n",hReg,hVal);
+
+    //*(copperList) = hReg;
+    copperList[copIndex++] = hReg;
+    copperList[copIndex++] = hVal;
+
 }
 
 void parseLabel(char* label) {
@@ -84,6 +115,10 @@ void parseSimpleValue(char* simpleValue) {
     printf("E' un valore semplice %s\n",simpleValue);
 }
 
+void addWaitEnd() {
+    copperList[copIndex++] = 0xffff;
+    copperList[copIndex++] = 0xfffe;
+}
 
 void parseToken(char* token) {
     printf("Parso il token '%s-\n",token);
@@ -109,6 +144,14 @@ void parseToken(char* token) {
     if (validToken != NULL) {
         parseSimpleValue(token);
     }
+
+    // Vediamo se è la fine della copperlist
+    validToken = strstr(token,"WAIT_END");
+    if (validToken != NULL) {
+        addWaitEnd();
+    }
+
+    printf("\n\n\n");
 }
 
 void parseLine(char* line) {

@@ -3,12 +3,6 @@
 #include "copbuilder.h"
 #include "registers.h"
 
-UWORD copperlist[] = {
-	1,2,
-	3,4,
-	5,6,
-	0xffff,0xfffe
-};
 
 
 
@@ -29,12 +23,12 @@ void printCopperlist(UWORD* copperlist) {
 int main () {
     
 
-    compileCopperlist("copperlist.pcl");
+    UWORD* copperList = compileCopperlist("copperlist_fm.pcl");
 
-    
+    printf("Copperlist %#20x\n",copperList);
 
     //UWORD wReg = resolveRegister("BLTCMOD");
     //printf("Restituito %#08x\n",wReg);
 
-
+    printCopperlist(copperList);
 }
