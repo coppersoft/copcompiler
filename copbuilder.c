@@ -4,13 +4,12 @@
 #include <string.h>
 #include "copbuilder.h"
 #include "registers.h"
+#include "labels.h"
 
 
 
 UWORD* copperList;
-char*   labels;
 int     copIndex = 0;
-int     lblIndex = 0;
 
 
 
@@ -23,17 +22,13 @@ static void allocCopperlist() {
     }
 }
 
-static void allocLabels() {
-    labels = (char*) malloc(sizeof(char) * LABELS_BUFFER_SIZE);
-}
+
 
 void freeCopperlist() {
     free(copperList);
 }
 
-void freeLabels() {
-    free(labels);
-}
+
 
 /**
  * @brief converts 4 nibble hexadecimal string to UWORD, input MUST be XXXX
@@ -107,8 +102,23 @@ void parseMove(char* move) {
 
 }
 
+void parseWait(char* wait) {
+    char waitValue[10] = {0};
+    wait+=5;
+    char* endWaitValue = strchr(wait,')');
+
+    strncpy(waitValue,wait,(endWaitValue-wait));
+
+    printf("Valore wait: %s\n",waitValue);
+
+    UWORD wVal = hex2word(waitValue);
+    copperList[copIndex++] = wVal;
+    copperList[copIndex++] = 0xfffe;
+
+}
+
 void parseLabel(char* label) {
-    printf("E' una label: %s\n",label);
+    putLabel(copIndex,label);
 }
 
 void parseSimpleValue(char* simpleValue) {
@@ -116,9 +126,12 @@ void parseSimpleValue(char* simpleValue) {
 }
 
 void addWaitEnd() {
+    printf("Dentro addWaitEnd\n");
     copperList[copIndex++] = 0xffff;
     copperList[copIndex++] = 0xfffe;
 }
+
+
 
 void parseToken(char* token) {
     printf("Parso il token '%s-\n",token);
@@ -139,16 +152,27 @@ void parseToken(char* token) {
         return;
     }
 
-    // Vediamo se è un valore secco
-    validToken = strstr(token,"0x");
-    if (validToken != NULL) {
-        parseSimpleValue(token);
-    }
-
     // Vediamo se è la fine della copperlist
     validToken = strstr(token,"WAIT_END");
     if (validToken != NULL) {
         addWaitEnd();
+        return;
+    }    
+
+    // Vediamo se è una wait
+    validToken = strstr(token,"WAIT");
+    if (validToken != NULL) {
+        parseWait(validToken);
+        return;
+    }
+
+    
+
+    // Vediamo se è un valore secco
+    validToken = strstr(token,"0x");
+    if (validToken != NULL) {
+        parseSimpleValue(token);
+        return;
     }
 
     printf("\n\n\n");

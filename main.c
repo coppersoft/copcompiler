@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "copbuilder.h"
 #include "registers.h"
+#include "labels.h"
 
 
 
@@ -22,13 +23,19 @@ void printCopperlist(UWORD* copperlist) {
 
 int main () {
     
-
+    allocLabels();
     UWORD* copperList = compileCopperlist("copperlist_fm.pcl");
 
-    printf("Copperlist %#20x\n",copperList);
 
-    //UWORD wReg = resolveRegister("BLTCMOD");
-    //printf("Restituito %#08x\n",wReg);
+    //printCopperlist(copperList);
+/* 
+    char prova[20];
 
-    printCopperlist(copperList);
+    snprintf(prova,20,"%s %d","miaLabel:",30);
+
+    printf("%s\n",prova); */
+
+    
+    printLabels();
+    freeLabels();
 }

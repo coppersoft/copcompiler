@@ -1,3 +1,6 @@
+mymove:
     MOVE(FMODE=0)   // set fetch mode = 0 (slow fetch mode for AGA compatibility)
+mywait:
+    WAIT(0x3e07)
     WAIT_END
     
