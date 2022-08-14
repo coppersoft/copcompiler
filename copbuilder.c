@@ -13,6 +13,29 @@ int     copIndex = 0;
 
 
 
+/*
+    Cannot use GNU libc's "endian.h" because is absent in Amiga's NDK, and I want this tool to be multiplatform.
+
+    I use this simple technique to check if I'm running in a big-endian system (Amiga m68k) or a little endian system (Intel x86/64).
+    
+    Taken from:
+
+    https://www.geeksforgeeks.org/little-and-big-endian-mystery/
+*/
+bool    isLittleEndian = true;
+static void checkEndianess() {
+    unsigned int i = 1;
+    char *c = (char*)&i;
+    if (*c)   
+        isLittleEndian = true;
+    else
+        isLittleEndian = false;
+
+}
+
+/*
+    Memory management stuff
+*/
 static void allocCopperlist() {
     copperList = (UWORD*) malloc(sizeof(UWORD) * COP_BUFFER_SIZE);
 
@@ -22,12 +45,13 @@ static void allocCopperlist() {
     }
 }
 
-
-
 void freeCopperlist() {
     free(copperList);
 }
 
+static UWORD swapBytes(UWORD word) {
+    return (word>>8) | (word<<8);
+}
 
 
 /**
@@ -39,13 +63,22 @@ void freeCopperlist() {
 UWORD hex2word(char* hex) {
     UWORD value = (UWORD)strtol(hex,NULL,16);
 
-    return value;
+    if (isLittleEndian) {
+        value = swapBytes(value);
+    }
 
+    return value;
 }
 
 
 
+
 UWORD* compileCopperlist(char* copFileName) {
+
+    checkEndianess;
+
+    printf("Little endian?: %d\n",isLittleEndian);
+
 
     allocCopperlist();
     allocLabels();
@@ -113,7 +146,11 @@ void parseWait(char* wait) {
 
     UWORD wVal = hex2word(waitValue);
     copperList[copIndex++] = wVal;
-    copperList[copIndex++] = 0xfffe;
+    if (isLittleEndian) {
+        copperList[copIndex++] = 0xfeff;
+    } else {
+        copperList[copIndex++] = 0xfffe;
+    }
 
 }
 
@@ -129,8 +166,14 @@ void parseSimpleValue(char* simpleValue) {
 
 void addWaitEnd() {
     printf("Dentro addWaitEnd\n");
-    copperList[copIndex++] = 0xffff;
-    copperList[copIndex++] = 0xfffe;
+    if (isLittleEndian) {
+        copperList[copIndex++] = 0xffff;
+        copperList[copIndex++] = 0xfeff;
+    } else {
+        copperList[copIndex++] = 0xffff;
+        copperList[copIndex++] = 0xfffe;
+    }
+    
 }
 
 
