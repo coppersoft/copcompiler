@@ -122,7 +122,9 @@ void parseLabel(char* label) {
 }
 
 void parseSimpleValue(char* simpleValue) {
-    printf("E' un valore semplice %s\n",simpleValue);
+    
+    UWORD wVal = hex2word(simpleValue);
+    copperList[copIndex++] = wVal;
 }
 
 void addWaitEnd() {

@@ -24,7 +24,7 @@ void printCopperlist(UWORD* copperlist) {
 int main () {
     
     allocLabels();
-    UWORD* copperList = compileCopperlist("copperlist_fm.pcl");
+    UWORD* copperList = compileCopperlist("copperlist.pcl");
 
 
     //printCopperlist(copperList);
@@ -35,7 +35,9 @@ int main () {
 
     printf("%s\n",prova); */
 
+    printCopperlist(copperList);
     
     printLabels();
+    
     freeLabels();
 }
