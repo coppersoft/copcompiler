@@ -21,6 +21,7 @@ void printCopperlist(UWORD* copperlist) {
     }
 }
 
+
 int main () {
     
     allocLabels();
@@ -39,5 +40,7 @@ int main () {
     
     printLabels();
     
+    writeCopperlist("Outputcop.bin");
+
     freeLabels();
 }

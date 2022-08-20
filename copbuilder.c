@@ -49,6 +49,18 @@ void freeCopperlist() {
     free(copperList);
 }
 
+void writeCopperlist(char* fileName) {
+    FILE* cfPtr;
+    if ((cfPtr = fopen(fileName,"wb")) == NULL){
+       printf("Error writing copperlist to file\n");
+       exit(1);
+    }
+    
+    fwrite(copperList,sizeof(UWORD),copIndex,cfPtr);
+
+    fclose(cfPtr);
+}
+
 static UWORD swapBytes(UWORD word) {
     return (word>>8) | (word<<8);
 }

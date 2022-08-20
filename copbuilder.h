@@ -17,3 +17,4 @@ void parseLine(char* line);
 
 void freeCopperlist();
 void freeLabels();
+void writeCopperlist(char* fileName);
