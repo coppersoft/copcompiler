@@ -87,7 +87,7 @@ UWORD hex2word(char* hex) {
 
 UWORD* compileCopperlist(char* copFileName) {
 
-    checkEndianess;
+    checkEndianess();
 
     printf("Little endian?: %d\n",isLittleEndian);
 

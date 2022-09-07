@@ -4,6 +4,7 @@
 
 int lblIndex = 0;
 
+#define     LABEL_SIZE      80
 
 char*   labels;
 
@@ -19,7 +20,7 @@ static void removeCr(char* label) {
 
 void putLabel(int index, char* label) {
     removeCr(label);
-    char labelLine[20];
+    char labelLine[LABEL_SIZE];
     int sLen = strlen(label);
     snprintf(labelLine,sLen+6,"%s %d\n",label,index);
     strcat(labels,labelLine);

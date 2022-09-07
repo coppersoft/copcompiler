@@ -1,10 +1,10 @@
 CC=gcc
 
 all: copbuilder registers labels
-	$(CC) copbuilder.o registers.o labels.o main.c
+	$(CC) copbuilder.o registers.o labels.o -g main.c
 copbuilder:
-	$(CC) -c copbuilder.c
+	$(CC) -c -g copbuilder.c
 registers:
-	$(CC) -c registers.c
+	$(CC) -c -g registers.c
 labels:
-	$(CC) -c labels.c
+	$(CC) -c -g labels.c
