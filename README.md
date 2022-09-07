@@ -2,7 +2,7 @@
 
 (C) 2022 - Lorenzo Di Gaetano
 
-This is a side project of Planar Engine
+This is a side project of Planar Framework
 
 https://github.com/coppersoft/planar
 
