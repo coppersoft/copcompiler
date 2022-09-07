@@ -60,10 +60,6 @@ int main (int argc, char** argv) {
         strcpy(&labelsfilename[len],"_labels.txt");
     }
 
-    
-
-
-
     allocLabels();
     UWORD* copperList = compileCopperlist(filename);
 
