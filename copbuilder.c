@@ -6,12 +6,8 @@
 #include "registers.h"
 #include "labels.h"
 
-
-
 UWORD* copperList;
 int     copIndex = 0;
-
-
 
 /*
     Cannot use GNU libc's "endian.h" because is absent in Amiga's NDK, and I want this tool to be multiplatform.
@@ -30,7 +26,6 @@ static void checkEndianess() {
         isLittleEndian = true;
     else
         isLittleEndian = false;
-
 }
 
 /*
@@ -82,9 +77,6 @@ UWORD hex2word(char* hex) {
     return value;
 }
 
-
-
-
 UWORD* compileCopperlist(char* copFileName) {
 
     checkEndianess();
@@ -105,8 +97,7 @@ UWORD* compileCopperlist(char* copFileName) {
     }
 
     while (fgets(copLine, COP_MAX_LINE_SIZE, copFile))
-    {  
-        //printf("%s",copLine);
+    {
         parseLine(copLine);
     }
 
@@ -132,16 +123,11 @@ void parseMove(char* move) {
 
     printf("Valore del registro: %s\n",regvalue);
 
-    
-
     UWORD hReg = resolveRegister(regname);
     UWORD hVal = hex2word(regvalue);
 
-    
-
     printf("Valori reg %d , val %d\n\n",hReg,hVal);
 
-    //*(copperList) = hReg;
     copperList[copIndex++] = hReg;
     copperList[copIndex++] = hVal;
 

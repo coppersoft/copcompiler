@@ -1,12 +1,14 @@
+/*
+    Planar framework - Copperlist compiler
+
+    (C) 2022 - Lorenzo Di Gaetano
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "copbuilder.h"
 #include "registers.h"
 #include "labels.h"
-
-
-
-
 
 void printCopperlist(UWORD* copperlist) {
 	int index = 0;
@@ -34,5 +36,6 @@ int main () {
     writeCopperlist("Outputcop.bin");
     writeLabels("Labels.txt");
 
+    freeCopperlist();
     freeLabels();
 }
