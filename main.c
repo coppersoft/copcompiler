@@ -27,20 +27,12 @@ int main () {
     allocLabels();
     UWORD* copperList = compileCopperlist("copperlist.pcl");
 
-
-    //printCopperlist(copperList);
-/* 
-    char prova[20];
-
-    snprintf(prova,20,"%s %d","miaLabel:",30);
-
-    printf("%s\n",prova); */
-
     printCopperlist(copperList);
     
     printLabels();
     
     writeCopperlist("Outputcop.bin");
+    writeLabels("Labels.txt");
 
     freeLabels();
 }

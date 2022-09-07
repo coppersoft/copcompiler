@@ -58,3 +58,5 @@ main.dSYM/Contents/Resources/DWARF/main
 main
 a.out.dSYM/Contents/Info.plist
 Outputcop.bin
+*.bin
+*.txt

@@ -37,3 +37,18 @@ void freeLabels() {
 void printLabels() {
     printf("%s\n",labels);
 }
+
+void writeLabels(char* fileName) {
+    FILE* lfPtr;
+    if ((lfPtr = fopen(fileName,"wb")) == NULL){
+       printf("Error writing labels to file\n");
+       exit(1);
+    }
+    
+    int pos = 0;
+    char actChar;
+    while ((actChar = labels[pos++]) != 0) {
+        fputc(actChar,lfPtr);
+    }
+    fclose(lfPtr);
+}
