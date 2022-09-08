@@ -62,3 +62,7 @@ WAIT(0xffff)
 ```
 
 but this is something you surely already know! ;-)
+
+#### LABELS ####
+
+The key feature of this tool is the ability to add labels 
