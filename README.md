@@ -20,7 +20,7 @@ Now you can define a copperlist in a special text file. This tool will take this
 
 Copperlist files must follow a simple but powerful syntax. Actually you can define 3 instructions: MOVE, WAIT and WAIT_END.
 
-### MOVE ###
+#### MOVE ####
 
 You can add a Copper MOVE instruction with:
 
@@ -28,7 +28,7 @@ You can add a Copper MOVE instruction with:
 MOVE(<REGISTER_NAME>,VALUE)
 ```
 
-Where REGISTER_NAME is the actual Amiga OCS/AGA register as defined in the Amiga Hardware Manual, you can find a list of Amiga Hardware Registers here
+Where REGISTER_NAME is the actual Amiga OCS/AGA register as defined in the Amiga Hardware Manual, you can find a list of Amiga Hardware Registers here:
 
 http://amiga-dev.wikidot.com/information:hardware
 
@@ -38,4 +38,27 @@ You can separate instructions with a comma
 MOVE(<REGISTER_NAME>,VALUE),MOVE(<REGISTER_NAME>,VALUE)
 ```
 
+Values MUST be in the 0x0000 hexadecimal format.
 
+#### WAIT ####
+
+You can add a Copper WAIT instruction with
+
+```
+WAIT(VALUE)
+```
+
+#### WAIT_END ####
+
+As usual, at the and of the coppertlist you must add a WAIT_END instruction:
+
+```
+WAIT_END
+```
+
+that is equivalent to a
+```
+WAIT(0xffff)
+```
+
+but this is something you surely already know! ;-)
