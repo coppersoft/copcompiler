@@ -25,7 +25,7 @@ Copperlist files must follow a simple but powerful syntax. Actually you can defi
 You can add a Copper MOVE instruction with:
 
 ```
-MOVE(<REGISTER_NAME>,VALUE)
+MOVE(<REGISTER_NAME>=VALUE)
 ```
 
 Where REGISTER_NAME is the actual Amiga OCS/AGA register as defined in the Amiga Hardware Manual, you can find a list of Amiga Hardware Registers here:
@@ -35,7 +35,7 @@ http://amiga-dev.wikidot.com/information:hardware
 You can separate instructions with a comma
 
 ```
-MOVE(<REGISTER_NAME>,VALUE),MOVE(<REGISTER_NAME>,VALUE)
+MOVE(<REGISTER_NAME>=VALUE),MOVE(<REGISTER_NAME>=VALUE)
 ```
 
 Values MUST be in the 0x0000 hexadecimal format.
@@ -65,4 +65,53 @@ but this is something you surely already know! ;-)
 
 #### LABELS ####
 
-The key feature of this tool is the ability to add labels 
+The key feature of this tool is the ability to add labels, you can add label simply doing this:
+
+```
+<labelname>:
+```
+
+Labels must be written in a separate line. When you launch the copperlist compiling you'll get a separate text file in which you'll find all the labels with the relative offsets, example:
+
+```
+label_1: 2
+label_2: 34
+```
+
+The offsets starts from 0 and points to the first UWORD value immediately following the label. So, for example, if you have something like this
+
+```
+mylabel:
+    MOVE(BPLCON0=0xabcd)
+```
+
+and you get
+```
+mylabel: 10
+```
+
+to modify BPLCON0 value you must point to offset 11.
+
+
+#### COMMENTS ####
+
+You can add comments where you want using the usual // syntax
+
+```
+// mycomment
+```
+
+#### DIRECT VALUES ####
+
+You can add specific copperlist values simply by specifying them in hexadecimal format, this is useful, for example, if you want to add palette C output from graphics conversion tools like the famous "Piccon".
+
+Example:
+
+```
+Palette:
+	0x0180,0x0000,0x0182,0x0000,0x0184,0x0000,0x0186,0x0000,
+	0x0188,0x0000,0x018a,0x0000,0x018c,0x0000,0x018e,0x0000,
+	0x0190,0x0000,0x0192,0x0000,0x0194,0x0000,0x0196,0x0000,
+	0x0198,0x0000,0x019a,0x0000,0x019c,0x0000,0x019e,0x0000
+```
+
