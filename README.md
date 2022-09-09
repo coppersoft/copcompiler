@@ -118,10 +118,19 @@ Palette:
 ## USAGE
 
 ```
-copbuilder.exe <copperlistfile> <outputfile> <labelsfile>
+copcomp.exe <copperlistfile> <outputfile> <labelsfile>
 ```
 
-You must specify at least the copperlistfile, in this case outputfile and labelsfile defaults to ```<copperlistfile>.bin``` and ```<copperlistfile>_labels.txt```
+You must specify at least the copperlistfile, in this case outputfile and labelsfile defaults to ```<copperlistfile>.bin``` and ```<copperlistfile>_labels.txt``` respectively.
 
+## BUILDING
 
+Copperlist Compiler is a plain simple C program. Assuming you have gcc and make in your PATH, simply run make.
 
+## KNOWN BUGS
+
+Actually, the parser does not make any type of syntax control, so any error in the syntax will probably led to a crash.
+
+## FUTURE
+
+Actually this is a stand-alone tool to be used on the host machine. I'm looking forward to integrate it in Planar.
