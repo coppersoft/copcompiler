@@ -18,7 +18,7 @@ Now you can define a copperlist in a special text file. This tool will take this
 
 ## Copperlist syntax ##
 
-Copperlist files must follow a simple but powerful syntax. Actually you can define 3 instructions: MOVE, WAIT and WAIT_END.
+Copperlist files must follow a simple but powerful syntax. Actually you can define 3 instructions: MOVE, WAIT and WAIT_END. You can find a couple of examples in the examples directory.
 
 #### MOVE ####
 
