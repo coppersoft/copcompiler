@@ -28,7 +28,7 @@ void printCopperlist(UWORD* copperlist) {
 
 static void printInstructions() {
     printf("Usage: \n\n");
-    printf("copbuilder <copperlistfile> <outputfile> <labelsfile>\n");
+    printf("copbuilder.exe <copperlistfile> <outputfile> <labelsfile>\n");
 }
 
 int main (int argc, char** argv) {

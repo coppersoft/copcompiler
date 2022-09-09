@@ -115,3 +115,13 @@ Palette:
 	0x0198,0x0000,0x019a,0x0000,0x019c,0x0000,0x019e,0x0000
 ```
 
+## USAGE
+
+```
+copbuilder.exe <copperlistfile> <outputfile> <labelsfile>
+```
+
+You must specify at least the copperlistfile, in this case outputfile and labelsfile defaults to ```<copperlistfile>.bin``` and ```<copperlistfile>_labels.txt```
+
+
+
