@@ -22,7 +22,7 @@ void putLabel(int index, char* label) {
     removeCr(label);
     char labelLine[LABEL_SIZE];
     int sLen = strlen(label);
-    snprintf(labelLine,sLen+6,"%s %d\n",label,index);
+    snprintf(labelLine,sLen+10,"%s %d\n",label,index);
     strcat(labels,labelLine);
 }
 
