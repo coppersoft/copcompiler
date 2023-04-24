@@ -1,5 +1,7 @@
     MOVE(FMODE=0)   // set fetch mode = 0 (slow fetch mode for AGA compatibility)
 
+// 0x00ee
+
 spritepointers:
     MOVE(SPR0PTH=0), MOVE(SPR0PTL=0),     // Sprites
     MOVE(SPR1PTH=0), MOVE(SPR1PTL=0)

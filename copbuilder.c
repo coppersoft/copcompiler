@@ -180,6 +180,9 @@ void parseToken(char* token) {
     printf("Parso il token '%s-\n",token);
     char* validToken = NULL;
 
+    // Vedo se è un commento
+    if (token[0] == '/' && token[1] == '/') return;
+
     // Vedo se è una label
     validToken = strchr(token,':');
     if (validToken != NULL) {
@@ -222,7 +225,7 @@ void parseToken(char* token) {
 }
 
 void parseLine(char* line) {
-    char * token = strtok(line, ",");
+   char * token = strtok(line, ",");
     // loop through the string to extract all other tokens
     while( token != NULL ) {
         parseToken(token);
